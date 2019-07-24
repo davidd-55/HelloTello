@@ -25,9 +25,11 @@ This program displays a Tello drone video stream and allows a user to control a 
     
 ## **Install and Run:**
 - Install dependencies:
+    
     $ pip install -r requirements.txt
     
 - Run: Open a Terminal in /path/to/HelloTello and type:
-    $ python TelloRC.py
-    
+
+    $ python HelloTello.py
+
 - Note: You may have to add a '3' after pip and python commands if you have multiple python versions installed on your system.
