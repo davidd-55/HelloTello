@@ -33,3 +33,7 @@ This program displays a Tello drone video stream and allows a user to control a 
     $ python HelloTello.py
 
 - Note: You may have to add a '3' after pip and python commands if you have multiple python versions installed on your system. App Tested on Ubunutu 18.04 and MacOS 10.14.
+
+## Credits:
+- Big thanks to Damia Fuentes (GitHub @damiafuentes) for figuring out h.264 encoding/decoding in tello.py wrapper class!
+- Big thanks to Jabrils (GitHub @jabrils) for inspiration on AI drone and conceptualizing for to make use of OpenCV outputs!
