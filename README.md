@@ -36,4 +36,4 @@ This program displays a Tello drone video stream and allows a user to control a 
 
 ## Credits:
 - Big thanks to Damia Fuentes (GitHub @damiafuentes) for figuring out h.264 encoding/decoding in tello.py wrapper class!
-- Big thanks to Jabrils (GitHub @jabrils) for inspiration on AI drone and conceptualizing for to make use of OpenCV outputs!
+- Big thanks to Jabrils (GitHub @jabrils) for inspiration on AI drone and conceptualizing to make use of OpenCV outputs!
