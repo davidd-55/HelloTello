@@ -5,6 +5,7 @@ This implementation only follows faces. Future update will support other HAAR ca
 """
 
 from tello import Tello
+import cascade_importer as ci
 import time
 import sys
 import cv2
@@ -59,7 +60,7 @@ def initialize():
     # get stream data, exit if fails
     strm = t.streamon(response=False)
 
-def facedetect(img, cascade, mode):
+def facedetect(img, cscde, mode):
     """
     Runs OpenCV image processing on an image (frame) and draws a box around detected
     object. Returns an np.array (x, y, z) of center coordinates and z = target box area + 1
@@ -75,7 +76,7 @@ def facedetect(img, cascade, mode):
 
     # grayscale and analyze frame
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=2, minNeighbors=5) # 1.3, 5)
+    faces = cscde.detectMultiScale(gray, scaleFactor=2, minNeighbors=5) # 1.3, 5)
 
     # write flight mode on frame
     if mode:
@@ -122,15 +123,20 @@ if __name__ == "__main__":
     # following distances based on area of bounding box
     cam_center_coords = np.array((480, 360, 9216)) # z is target distance (bounding box area)
 
-    # setup text for stream
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    bottom_left_corner = (10, 710)
-    face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-
     # give user inputs
     if not intro():
         print("Exiting HelloTello...")
         sys.exit()
+
+    # setup cascade and text for stream
+    cas_lst = ci.cascade_finder()
+    print("Now, choose what Tello will track.\nAvailable libraries:")
+    for cascade in cas_lst:
+        print(cascade)
+    cascade_dir = "cascades/" + ci.usr_choice(cas_lst)
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    bottom_left_corner = (10, 710)
+    cascade = cv2.CascadeClassifier(cascade_dir)
 
     # initialize Tello and video stream
     t = Tello()
@@ -144,7 +150,7 @@ if __name__ == "__main__":
         frame_read = t.get_frame_read()
         frame = cv2.cvtColor(frame_read.frame, cv2.COLOR_BGR2RGB)
         frameRet = frame_read.frame
-        face_center_coords = facedetect(frameRet, face_cascade, MANUAL_MODE)
+        face_center_coords = facedetect(frameRet, cascade, MANUAL_MODE)
 
         # velocity printout
         if S == 30:
@@ -219,13 +225,15 @@ if __name__ == "__main__":
                 up_down_v = S
             elif k == 84:
                 up_down_v = -S
-            else: up_down_v = 0
+            else: 
+                up_down_v = 0
 
             if k == 81:
                 yaw_v = -S
             elif k == 83:
                 yaw_v = S
-            else: yaw_v = 0
+            else: 
+                yaw_v = 0
 
             if k == ord('l'):
                 t.land()
@@ -252,7 +260,8 @@ if __name__ == "__main__":
                 elif move_vector[0] > 0: # safety_x:
                     yaw_v = -S
                     last_yaw_direction = -1
-                else: yaw_v = 0
+                else: 
+                    yaw_v = 0
 
                 if move_vector[1] < 0: # safety_y:
                     up_down_v = -S

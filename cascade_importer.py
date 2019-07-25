@@ -1,5 +1,6 @@
 import os
 
+
 def cascade_finder():
 
     cascade_list = []
@@ -15,6 +16,7 @@ def cascade_finder():
 
     return cascade_list
 
+
 def usr_choice(lst):
     lst_size = len(lst)
 
@@ -27,17 +29,10 @@ def usr_choice(lst):
         return usr_choice(lst)
 
     user_filename = lst[(int(usr_selec) - 1)]
-    
+
     if int(usr_selec) > 9:
         user_filename_modified = "haarcascade_" + user_filename[4:] + ".xml"
     else:
         user_filename_modified = "haarcascade_" + user_filename[3:] + ".xml"
-    
-    return user_filename_modified
 
-cas_lst = cascade_finder()
-print("Available objects for tracking:")
-for name in cas_lst:
-    print(name)
-print(usr_choice(cas_lst))
-            
+    return user_filename_modified
