@@ -11,9 +11,9 @@ This program displays a Tello drone video stream and allows a user to control a 
     
 ## **Controls:**
 - W,A,S,D: Forward, Backward, Left, Right
-- Up,Down,Left,Right Arrows: Up, Down, Rotate Left/Right
+- I,K,J,L: Up, Down, Rotate Left/Right
 - T: Takeoff
-- L: Land and Exit
+- Q: Land and Exit
 - ESC: Emergency Motor Shutoff
 - M: Enable/Disable Manual Mode
 - 1,2,3: Set Speed Low, Normal, High

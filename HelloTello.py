@@ -24,9 +24,9 @@ def intro():
           "NumPy,\nand OpenCV-Python installed on your system. Check requirements.txt for more info.\n")
     print("Once you have looked over the controls, press any key + 'Enter' to continue or 'Q' to quit.\n")
     print("Here are the available controls:")
-    print("\tESC - Emergency Motor Shutoff.\n\tT - Takeoff.\n\tQ - Exit.\n\tL - Land.\n\tW - Forward.\n\tS - Backward"
-          "\n\tA - Left.\n\tD - Right.\n\tUp Arrow - Up.\n\tDown Arrow - Down.\n\t"
-          "Left Arrow - Rotate Left.\n\tRight Arrow - Rotate Right.\n\tM - Enable/Disable Manual Mode."
+    print("\tESC - Emergency Motor Shutoff.\n\tT - Takeoff.\n\tQ - Exit.\n\tQ - Land.\n\tW - Forward.\n\tS - Backward"
+          "\n\tA - Left.\n\tD - Right.\n\tI- Up.\n\tK - Down.\n\t"
+          "J - Rotate Left.\n\tL - Rotate Right.\n\tM - Enable/Disable Manual Mode."
           "\n\t1 - Set Low Speed.\n\t2 - Set Normal Speed.\n\t3 - Set High Speed.")
 
     usr_in = input("")
@@ -235,7 +235,7 @@ if __name__ == "__main__":
             else: 
                 yaw_v = 0
 
-            if k == ord('l'):
+            if k == ord('q'):
                 t.land()
                 running = False
 
@@ -247,7 +247,7 @@ if __name__ == "__main__":
             object_bool = (move_vector != np.array((0, 0, -1)))
             object_detected = object_bool.all()
 
-            if k == ord('l'):
+            if k == ord('q'):
                 t.land()
                 running = False
             
