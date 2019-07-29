@@ -160,7 +160,7 @@ if __name__ == "__main__":
         elif S == 100:
             text = "Speed: Fast"
 
-        k = cv2.waitKey(40) & 0xFF
+        k = cv2.waitKey(30) & 0xFF
         
         # controls as given in intro() function
         if k == ord('t'):
@@ -253,19 +253,21 @@ if __name__ == "__main__":
             
             # AI movement if OpenCV detects object
             if object_detected:
+
+                # print(move_vector)
                 
-                if move_vector[0] < 0: # -safety_x:
+                if move_vector[0] < -safety_x:
                     yaw_v = S
                     last_yaw_direction = 1
-                elif move_vector[0] > 0: # safety_x:
+                elif move_vector[0] > safety_x:
                     yaw_v = -S
                     last_yaw_direction = -1
                 else: 
                     yaw_v = 0
 
-                if move_vector[1] < 0: # safety_y:
+                if move_vector[1] < -safety_y:
                     up_down_v = -S
-                elif move_vector[1] > 0: # -safety_y:
+                elif move_vector[1] > safety_y:
                     up_down_v = S
                 else:
                     up_down_v = 0
