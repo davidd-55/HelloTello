@@ -221,16 +221,16 @@ if __name__ == "__main__":
             else:
                 for_back_v = 0
 
-            if k == 82:
+            if k == ord('i'):
                 up_down_v = S
-            elif k == 84:
+            elif k == ord('k'):
                 up_down_v = -S
             else: 
                 up_down_v = 0
 
-            if k == 81:
+            if k == ord('j'):
                 yaw_v = -S
-            elif k == 83:
+            elif k == ord('l'):
                 yaw_v = S
             else: 
                 yaw_v = 0
